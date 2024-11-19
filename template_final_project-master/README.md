@@ -1,18 +1,18 @@
 
 :warning: Everything between << >> needs to be replaced (remove << >> after replacing)
 
-# << Project Title >>
-## CS110 B1 Final Project  << Semester, Year >>
+# Snakes and Apples 
+## CS110 B1 Final Project  Fall Semester, Freshman
 
 ## Team Members
 
-<< List team member names >>
+Hanssen Ly
 
 ***
 
 ## Project Description
 
-<< Give an overview of your project >>
+This game will involve playing as a snake and eating apples. For every apple you eat, your score and body length will increase by one. If you run into your own body, you die and you have to start over. Your goal is to stay alive as long as you can and eat all the apples you can.
 
 ***    
 
