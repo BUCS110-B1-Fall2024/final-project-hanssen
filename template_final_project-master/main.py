@@ -4,7 +4,7 @@ import time
 import random
 
 size = 40
-background_color = (0, 128, 255)
+background_color = (0, 0, 0)
 
 class Apple:
     def __init__(self, parent_screen):
@@ -77,7 +77,7 @@ class Game:
     def __init__(self):
         pygame.init()
         self.surface = pygame.display.set_mode((1000, 800))
-        self.surface.fill((0, 128, 255))
+        self.surface.fill((0, 0, 0))
         self.snake = Snake(self.surface, 1)
         self.snake.draw()
         self.apple = Apple(self.surface)
@@ -107,7 +107,7 @@ class Game:
     def show_game_over(self):
         self.surface.fill(background_color)
         font = pygame.font.SysFont('roboto', 30, bold=True)
-        line1 = font.render(f"Game Over! Your score is {self.snake.length}", True, (255, 255, 255))
+        line1 = font.render(f"Game is over: Your score is {self.snake.length}", True, (255, 255, 255))
         line2 = font.render("Press Enter to Restart or Escape to Quit", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         self.surface.blit(line2, (200, 350))
@@ -124,8 +124,9 @@ class Game:
 
     def show_main_menu(self):
         self.surface.fill(background_color)
-        font = pygame.font.SysFont('roboto', 50, bold=True)
-        title = font.render("Snake Game", True, (255, 255, 255))
+        title_image = pygame.image.load("template_final_project-master/assets/title.jpg").convert()
+        title_rect = title_image.get_rect(center=(500, 200))
+        self.surface.blit(title_image, title_rect)
 
         play_button = pygame.Rect(400, 300, 200, 50)
         quit_button = pygame.Rect(400, 400, 200, 50)
@@ -133,12 +134,12 @@ class Game:
         pygame.draw.rect(self.surface, (255, 255, 255), play_button)
         pygame.draw.rect(self.surface, (255, 255, 255), quit_button)
 
-        play_text = font.render("Play", True, (0, 128, 255))
-        quit_text = font.render("Quit", True, (0, 128, 255))
+        font = pygame.font.SysFont('roboto', 30, bold=True)
+        play_text = font.render("Play", True, (0, 0, 0))
+        quit_text = font.render("Quit", True, (0, 0, 0))
 
-        self.surface.blit(title, (350, 150))
-        self.surface.blit(play_text, (450, 305))
-        self.surface.blit(quit_text, (450, 405))
+        self.surface.blit(play_text, (play_button.x + 65, play_button.y + 10))
+        self.surface.blit(quit_text, (quit_button.x + 65, quit_button.y + 10))
 
         pygame.display.flip()
         return play_button, quit_button
