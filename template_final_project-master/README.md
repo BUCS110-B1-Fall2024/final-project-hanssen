@@ -30,15 +30,21 @@ This game will involve playing as a snake and eating apples. For every apple you
 
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Basic Snake Movement: The snake moves in four directions (up, down, left, right) controlled by the W, A, S, D keys. The snake's body follows the movement of its head.
+
+2. Apple Consumption and Growth: The snake consumes apples when it collides with them, and its length increases by one block. The apple then moves to a random position on the screen.
+
+3. Collision Detection: The game checks for collisions. An apple collision when the snake eats an apple, and a self-collision when the snake's head collides with its body, causing a game over. 
+
+4. Score Display: The player's score is displayed at the top-right of the screen, based on the number of apples eaten (snake length - 1).
+
+5. Game Over Screen and Restart: When the snake collides with itself, the game shows a Game Over screen with the score and options to restart (press Enter) or exit (press Escape).
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+- Apple: This class controls the apple's behavior, like moving around the screen, and staying within the bounds of the screen.
+- Snake: This class controls the snake's behavior, like moving with the arrow keys, and increasing length when the score appears.
+- Game: This controls the behavior of the game, like keeping score, and when to start and end.
 
 ## ATP
 
