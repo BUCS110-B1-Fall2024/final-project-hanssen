@@ -4,7 +4,8 @@ import time
 import random
 
 size = 40
-background_color = (0, 0, 0)
+menu_background_color = (0, 0, 0)
+game_background_color = (0, 128, 255)
 
 class Apple:
     def __init__(self, parent_screen):
@@ -36,7 +37,7 @@ class Snake:
         self.y.append(-1)
 
     def draw(self):
-        self.parent_screen.fill(background_color)
+        self.parent_screen.fill(game_background_color)
         for i in range(self.length):
             self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
         pygame.display.flip()
@@ -77,11 +78,8 @@ class Game:
     def __init__(self):
         pygame.init()
         self.surface = pygame.display.set_mode((1000, 800))
-        self.surface.fill((0, 0, 0))
         self.snake = Snake(self.surface, 1)
-        self.snake.draw()
         self.apple = Apple(self.surface)
-        self.apple.draw()
 
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + size:
@@ -105,7 +103,7 @@ class Game:
                 raise "Game Over"
 
     def show_game_over(self):
-        self.surface.fill(background_color)
+        self.surface.fill(game_background_color)
         font = pygame.font.SysFont('roboto', 30, bold=True)
         line1 = font.render(f"Game is over: Your score is {self.snake.length}", True, (255, 255, 255))
         line2 = font.render("Press Enter to Restart or Escape to Quit", True, (255, 255, 255))
@@ -123,8 +121,8 @@ class Game:
         self.surface.blit(score, (800, 10))
 
     def show_main_menu(self):
-        self.surface.fill(background_color)
-        title_image = pygame.image.load("template_final_project-master/assets/title.jpg").convert()
+        self.surface.fill(menu_background_color)
+        title_image = pygame.image.load("template_final_project-master/assets/title.png").convert()
         title_rect = title_image.get_rect(center=(500, 200))
         self.surface.blit(title_image, title_rect)
 
