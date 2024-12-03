@@ -1,4 +1,4 @@
-import pygame 
+import pygame
 from pygame.locals import *
 import time
 import random
@@ -12,11 +12,11 @@ class Apple:
         self.parent_screen = parent_screen
         self.x = 120
         self.y = 120
-        
+
     def draw(self):
         self.parent_screen.blit(self.image, (self.x, self.y))
         pygame.display.flip()
-        
+
     def move(self):
         self.x = random.randint(0, 24) * size
         self.y = random.randint(0, 19) * size
@@ -29,24 +29,23 @@ class Snake:
         self.x = [size] * length
         self.y = [size] * length
         self.direction = 'down'
-        
+
     def increase_length(self):
-        self.length+=1
+        self.length += 1
         self.x.append(-1)
         self.y.append(-1)
-        
+
     def draw(self):
         self.parent_screen.fill(background_color)
         for i in range(self.length):
-            self.parent_screen.blit(self.block, (self.x[i], self.y[i] ))
+            self.parent_screen.blit(self.block, (self.x[i], self.y[i]))
         pygame.display.flip()
-        
+
     def walk(self):
-        
         for i in range(self.length - 1, 0, -1):
             self.x[i] = self.x[i - 1]
             self.y[i] = self.y[i - 1]
-        
+
         if self.direction == 'up':
             self.y[0] -= size
         if self.direction == 'down':
@@ -55,20 +54,24 @@ class Snake:
             self.x[0] -= size
         if self.direction == 'right':
             self.x[0] += size
-            
+
         self.draw()
-        
+
     def move_up(self):
-        self.direction = 'up'
-        
+        if self.direction != 'down':
+            self.direction = 'up'
+
     def move_down(self):
-        self.direction = 'down'
-        
+        if self.direction != 'up':
+            self.direction = 'down'
+
     def move_left(self):
-        self.direction = 'left'
-        
+        if self.direction != 'right':
+            self.direction = 'left'
+
     def move_right(self):
-        self.direction = 'right'
+        if self.direction != 'left':
+            self.direction = 'right'
 
 class Game:
     def __init__(self):
@@ -79,58 +82,87 @@ class Game:
         self.snake.draw()
         self.apple = Apple(self.surface)
         self.apple.draw()
-        
+
     def is_collision(self, x1, y1, x2, y2):
         if x1 >= x2 and x1 < x2 + size:
             if y1 >= y2 and y1 < y2 + size:
                 return True
-            
+
         return False
-        
+
     def play(self):
         self.snake.walk()
         self.apple.draw()
         self.display_score()
         pygame.display.flip()
-        
+
         if self.is_collision(self.snake.x[0], self.snake.y[0], self.apple.x, self.apple.y):
             self.snake.increase_length()
             self.apple.move()
-            
+
         for i in range(3, self.snake.length):
             if self.is_collision(self.snake.x[0], self.snake.y[0], self.snake.x[i], self.snake.y[i]):
                 raise "Game Over"
-            
+
     def show_game_over(self):
         self.surface.fill(background_color)
-        font = pygame.font.SysFont('roboto', 30, bold = True)
-        line1 = font.render(f"Game is over: Your score is {self.snake.length}", True, (255, 255, 255))
-        line2 = font.render("To play again, Press Enter. To exit, Press Escape!", True, (255, 255, 255))
+        font = pygame.font.SysFont('roboto', 30, bold=True)
+        line1 = font.render(f"Game Over! Your score is {self.snake.length}", True, (255, 255, 255))
+        line2 = font.render("Press Enter to Restart or Escape to Quit", True, (255, 255, 255))
         self.surface.blit(line1, (200, 300))
         self.surface.blit(line2, (200, 350))
         pygame.display.flip()
-        
+
     def reset(self):
         self.snake = Snake(self.surface, 1)
         self.apple = Apple(self.surface)
-    
+
     def display_score(self):
-        font = pygame.font.SysFont('roboto', 30, bold = True)
+        font = pygame.font.SysFont('roboto', 30, bold=True)
         score = font.render(f"Score: {self.snake.length - 1}", True, (255, 255, 255))
         self.surface.blit(score, (800, 10))
-    
+
+    def show_main_menu(self):
+        self.surface.fill(background_color)
+        font = pygame.font.SysFont('roboto', 50, bold=True)
+        title = font.render("Snake Game", True, (255, 255, 255))
+
+        play_button = pygame.Rect(400, 300, 200, 50)
+        quit_button = pygame.Rect(400, 400, 200, 50)
+
+        pygame.draw.rect(self.surface, (255, 255, 255), play_button)
+        pygame.draw.rect(self.surface, (255, 255, 255), quit_button)
+
+        play_text = font.render("Play", True, (0, 128, 255))
+        quit_text = font.render("Quit", True, (0, 128, 255))
+
+        self.surface.blit(title, (350, 150))
+        self.surface.blit(play_text, (450, 305))
+        self.surface.blit(quit_text, (450, 405))
+
+        pygame.display.flip()
+        return play_button, quit_button
+
     def run(self):
         run = True
         pause = False
-        
+        main_menu = True
+
         while run:
+            if main_menu:
+                play_button, quit_button = self.show_main_menu()
+
             for event in pygame.event.get():
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
                         run = False
-                    if event.key == K_RETURN:
+
+                    if pause and event.key == K_RETURN:
+                        self.reset()
                         pause = False
-                    if not pause:
+                        main_menu = True
+
+                    if not pause and not main_menu:
                         if event.key == K_w:
                             self.snake.move_up()
                         if event.key == K_s:
@@ -139,22 +171,26 @@ class Game:
                             self.snake.move_left()
                         if event.key == K_d:
                             self.snake.move_right()
-                
+
+                elif event.type == MOUSEBUTTONDOWN and main_menu:
+                    if play_button.collidepoint(event.pos):
+                        main_menu = False
+                        pause = False
+                    elif quit_button.collidepoint(event.pos):
+                        run = False
+
                 elif event.type == QUIT:
                     run = False
-                    
-            try:
-                if not pause:         
+
+            if not main_menu and not pause:
+                try:
                     self.play()
-            except Exception as e:
-                self.show_game_over()
-                pause = True
-                self.reset()
-                
+                except Exception as e:
+                    self.show_game_over()
+                    pause = True
+
             time.sleep(0.15)
 
 if __name__ == "__main__":
     game = Game()
-    game.run()    
-    
-    
+    game.run()
