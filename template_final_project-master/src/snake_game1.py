@@ -2,28 +2,37 @@ import pygame
 from pygame.locals import *
 import time
 
+size = 40
+
 class Snake:
-    def __init__(self, parent_screen):
-        self.parent_screen = parent_screen
+    def __init__(self, surface, length):
+        self.length = length
+        self.parent_screen = surface
         self.block = pygame.image.load("template_final_project-master/assets/pixil-frame-0.png").convert()
-        self.x = 100
-        self.y = 100
+        self.x = [size] * length
+        self.y = [size] * length
         self.direction = 'up'
         
     def draw(self):
         self.parent_screen.fill((0, 128, 255))
-        self.parent_screen.blit(self.block, (self.x, self.y))
+        for i in range(self.length):
+            self.parent_screen.blit(self.block, (self.x[i], self.y[i] ))
         pygame.display.flip()
         
     def walk(self):
+        
+        for i in range(self.length - 1, 0, -1):
+            self.x[i] = self.x[i - 1]
+            self.y[i] = self.y[i - 1]
+        
         if self.direction == 'up':
-            self.y -= 10
+            self.y[0] -= size
         if self.direction == 'down':
-            self.y += 10
+            self.y[0] += size
         if self.direction == 'left':
-            self.x -= 10
+            self.x[0] -= size
         if self.direction == 'right':
-            self.x += 10
+            self.x[0] += size
             
         self.draw()
         
@@ -44,7 +53,7 @@ class Game:
         pygame.init()
         self.surface = pygame.display.set_mode((500, 500))
         self.surface.fill((0, 128, 255))
-        self.snake = Snake(self.surface)
+        self.snake = Snake(self.surface, 2)
         self.snake.draw()
     
     def run(self):
