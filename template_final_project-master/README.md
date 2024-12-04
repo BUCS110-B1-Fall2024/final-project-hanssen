@@ -26,24 +26,117 @@ This game will involve playing as a snake and eating apples. For every apple you
 
 ![final gui](assets/finalgui.jpg)
 
-## Program Design
-
 ### Features
 
-1. << Feature 1 >>
-2. << Feature 2 >>
-3. << Feature 3 >>
-4. << Feature 4 >>
-5. << Feature 5 >>
+1. Basic Snake Movement: The snake moves in four directions (up, down, left, right) controlled by the W, A, S, D keys. The snake's body follows the movement of its head.
+
+2. Apple Consumption and Growth: The snake consumes apples when it collides with them, and its length increases by one block. The apple then moves to a random position on the screen.
+
+3. Collision Detection: The game checks for collisions. An apple collision when the snake eats an apple, and a self-collision when the snake's head collides with its body, causing a game over. 
+
+4. Score Display: The player's score is displayed at the top-right of the screen, based on the number of apples eaten (snake length - 1).
+
+5. Game Over Screen and Restart: When the snake collides with itself, the game shows a Game Over screen with the score and options to restart (press Enter) or exit (press Escape).
 
 ### Classes
 
-- << You should have a list of each of your classes with a description >>
+- Apple: This class controls the apple's behavior, like moving around the screen, and staying within the bounds of the screen.
+- Snake: This class controls the snake's behavior, like moving with the arrow keys, and increasing length when the score appears.
+- Game: This controls the behavior of the game, like keeping score, and when to start and end.
 
 ## ATP
 
+1: Using the WASD keys to control the direction of the snake.  
+
 | Step                 |Procedure             |Expected Results                   |
 |----------------------|:--------------------:|----------------------------------:|
-|  1                   | Run Counter Program  |GUI window appears with count = 0  |
-|  2                   | click count button   | display changes to count = 1      |
-etc...
+|  1                   | Start game.          | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Press the A key on   | The snake should change directions|
+|                      | the keyboard.        | from its current direction to     |
+|                      |                      | left.                             |
+|                      |                      |                                   |
+|  3                   | Press the S key on   | The snake should change directions|
+|                      | the keyboard.        | from its current direction to     |
+|                      |                      | down.                             |
+|                      |                      |                                   |
+|  4                   | Press the D key on   | The snake should change directions|
+|                      | the keyboard.        | from its current direction to     |
+|                      |                      | right.                            |
+|                      |                      |                                   |
+|  5                   | Press the W key on   | The snake should change directions|
+|                      | the keyboard.        | from its current direction to     |
+|                      |                      | up.                               |
+
+2: Making sure collisions between the snake and apples are detected properly.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start game.          | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Guide the snake      | The score should stay the same,   |
+|                      | around the apples.   | and the apple should stay in the  |
+|                      |                      | same location.                    |
+|                      |                      |                                   |
+|  3                   | Guide the snake to   | The apple should disappear and    |
+|                      | an apple.            | reappear in a new location. The   |
+|                      |                      | score and the snake's length      |
+|                      |                      | should both increase by 1.        |
+
+3: Confirm the game ends when the snake runs into itself.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start game.          | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Play until the       | The snake should be long enough   |
+|                      | snake's length is    | to be able to run into itself.    |
+|                      | greater than or equal|                                   |
+|                      | to 5.                |                                   |
+|                      |                      |                                   |
+|  3                   | Guide the snake to   | The game should end and the game  |
+|                      | its own body segment.| over screen should appear.        |
+
+4: Confirm the main menu's start and quit buttons work as expected.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start program.       | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Press the "Play"     | The game should start.            |
+|                      | button.              |                                   |
+|                      |                      |                                   |
+|  3                   | Play until the       | The snake should be long enough   |
+|                      | snake's length is    | to be able to run into itself.    |
+|                      | greater than or equal|                                   |
+|                      | to 5.                |                                   |
+|                      |                      |                                   |
+|  4                   | Guide the snake to   | The game should end and the game  |
+|                      | its own body segment.| over screen should appear.        |
+|                      |                      |                                   |
+|  5                   | Press the Enter key  | The main menu should reappear.    |
+|                      | on the keyboard.     |                                   |
+|                      |                      |                                   |
+|  6                   | Press the "Quit"     | The program should end.           |
+|                      | button.              |                                   |
+
+5: Confirm the program ends when the Escape Key is pressed.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start program.       | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Press the "Play"     | The game should start.            |
+|                      | button.              |                                   |
+|                      |                      |                                   |
+|  3                   | Play until the       | The snake should be long enough   |
+|                      | snake's length is    | to be able to run into itself.    |
+|                      | greater than or equal|                                   |
+|                      | to 5.                |                                   |
+|                      |                      |                                   |
+|  4                   | Guide the snake to   | The game should end and the game  |
+|                      | its own body segment.| over screen should appear.        |
+|                      |                      |                                   |
+|  5                   | Press the Escape key | The program should end.           |
+|                      | on the keyboard.     |                                   |
+
