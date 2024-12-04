@@ -4,7 +4,7 @@ import time
 import random
 
 size = 40
-menu_background_color = (0, 0, 0)
+menu_background_image = "template_final_project-master/assets/menu_screen.png"
 game_background_color = (0, 128, 255)
 
 class Apple:
@@ -121,10 +121,9 @@ class Game:
         self.surface.blit(score, (800, 10))
 
     def show_main_menu(self):
-        self.surface.fill(menu_background_color)
-        title_image = pygame.image.load("template_final_project-master/assets/title.png").convert()
-        title_rect = title_image.get_rect(center=(500, 200))
-        self.surface.blit(title_image, title_rect)
+        background_image = pygame.image.load(menu_background_image).convert()
+        background_image = pygame.transform.scale(background_image, (1000, 800))
+        self.surface.blit(background_image, (0, 0))
 
         play_button = pygame.Rect(400, 300, 200, 50)
         quit_button = pygame.Rect(400, 400, 200, 50)
