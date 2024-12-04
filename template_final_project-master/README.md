@@ -139,3 +139,4 @@ This game will involve playing as a snake and eating apples. For every apple you
 |                      |                      |                                   |
 |  5                   | Press the Escape key | The program should end.           |
 |                      | on the keyboard.     |                                   |
+
