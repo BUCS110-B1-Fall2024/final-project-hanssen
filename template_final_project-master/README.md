@@ -26,8 +26,6 @@ This game will involve playing as a snake and eating apples. For every apple you
 
 ![final gui](assets/finalgui.jpg)
 
-## Program Design
-
 ### Features
 
 1. Basic Snake Movement: The snake moves in four directions (up, down, left, right) controlled by the W, A, S, D keys. The snake's body follows the movement of its head.
@@ -98,4 +96,46 @@ This game will involve playing as a snake and eating apples. For every apple you
 |                      |                      |                                   |
 |  3                   | Guide the snake to   | The game should end and the game  |
 |                      | its own body segment.| over screen should appear.        |
+
+4: Confirm the main menu's start and quit buttons work as expected.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start program.       | The program should start.         |
 |                      |                      |                                   |
+|  2                   | Press the "Play"     | The game should start.            |
+|                      | button.              |                                   |
+|                      |                      |                                   |
+|  3                   | Play until the       | The snake should be long enough   |
+|                      | snake's length is    | to be able to run into itself.    |
+|                      | greater than or equal|                                   |
+|                      | to 5.                |                                   |
+|                      |                      |                                   |
+|  4                   | Guide the snake to   | The game should end and the game  |
+|                      | its own body segment.| over screen should appear.        |
+|                      |                      |                                   |
+|  5                   | Press the Enter key  | The main menu should reappear.    |
+|                      | on the keyboard.     |                                   |
+|                      |                      |                                   |
+|  6                   | Press the "Quit"     | The program should end.           |
+|                      | button.              |                                   |
+
+5: Confirm the program ends when the Escape Key is pressed.
+
+| Step                 |Procedure             |Expected Results                   |
+|----------------------|:--------------------:|----------------------------------:|
+|  1                   | Start program.       | The program should start.         |
+|                      |                      |                                   |
+|  2                   | Press the "Play"     | The game should start.            |
+|                      | button.              |                                   |
+|                      |                      |                                   |
+|  3                   | Play until the       | The snake should be long enough   |
+|                      | snake's length is    | to be able to run into itself.    |
+|                      | greater than or equal|                                   |
+|                      | to 5.                |                                   |
+|                      |                      |                                   |
+|  4                   | Guide the snake to   | The game should end and the game  |
+|                      | its own body segment.| over screen should appear.        |
+|                      |                      |                                   |
+|  5                   | Press the Escape key | The program should end.           |
+|                      | on the keyboard.     |                                   |
